@@ -1,0 +1,39 @@
+name: FRP Client
+version: "2025.07.23.0"  # 按年月日调整，并添加补丁号
+slug: frpc
+description: "FRP Client for Home Assistant - A fast reverse proxy to expose local services behind NAT/firewall. Optimized for Chinese users."
+url: "https://github.com/sunboss/ha-frpc-addon"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+  - armhf
+startup: application
+boot: auto
+init: false
+options:
+  server_addr: ""
+  server_port: 7000
+  token: ""
+  local_port: 8123  # 默认映射 Home Assistant 的 8123 端口
+  proxy_name: "ha_proxy"
+  proxy_type: "http"
+  admin_port: 7500  # Admin UI 端口（可选）
+  admin_user: ""    # Admin UI 用户名（为空则禁用）
+  admin_pwd: ""     # Admin UI 密码
+schema:
+  server_addr: str
+  server_port: int
+  token: str?
+  local_port: int
+  proxy_name: str
+  proxy_type: "selector(http,tcp,udp,stcp,xtcp,sudp)"
+  admin_port: int?
+  admin_user: str?
+  admin_pwd: str?
+map:
+  - share:rw
+ports:
+  7000/tcp: null  # FRP 控制端口，可根据需要暴露
+  7500/tcp: 7500  # Admin UI 端口（默认暴露）
+image: "ghcr.io/sunboss/ha-frpc-addon-{arch}"

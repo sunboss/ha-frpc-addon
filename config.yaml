@@ -1,7 +1,7 @@
-name: FRP Client
+name: "FRP Client"
 version: "2025.07.23.0"
-slug: frpc
-description: "FRP Client for Home Assistant - A fast reverse proxy to expose local services behind NAT/firewall. Optimized for Chinese users."
+slug: "frpc"
+description: "快速内网穿透客户端，专为国内用户优化（支持 Gitee 镜像加速）"
 url: "https://github.com/sunboss/ha-frpc-addon"
 arch:
   - amd64
@@ -27,13 +27,12 @@ schema:
   token: str?
   local_port: int
   proxy_name: str
-  proxy_type: "selector(http,tcp,udp,stcp,xtcp,sudp)"
+  proxy_type: "selector(http|tcp|udp|stcp|xtcp|sudp)"
   admin_port: int?
   admin_user: str?
   admin_pwd: str?
 map:
   - share:rw
 ports:
-  7000/tcp: null
   7500/tcp: 7500
 image: "ghcr.io/sunboss/ha-frpc-addon-{arch}"
